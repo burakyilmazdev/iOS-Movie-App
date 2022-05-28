@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var movieCollectionView: UICollectionView!
+    let serviceManager = ServiceManager()
     
     let movieArray = [String]()
     
@@ -22,6 +23,9 @@ class ViewController: UIViewController {
         
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
+        
+        
+        serviceManager.getPopularMovies()
         
     }
 
