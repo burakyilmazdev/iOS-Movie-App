@@ -6,53 +6,68 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController {
     
 
+    @IBOutlet weak var collectionViewIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var coverIndicator: UIActivityIndicatorView!
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var movieCollectionView: UICollectionView!
-    let serviceManager = ServiceManager()
+
     
-    let movieArray = [String]()
+    let movieViewModel = MovieViewModel()
+    private var bag = DisposeBag()
+    var movieArray = [Movie]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        movieCollectionView.delegate = self
-        movieCollectionView.dataSource = self
         
-        
-        serviceManager.getPopularMovies()
+        movieViewModel.getMovies().subscribe { Resource in
+            
+            switch Resource.element?.status{
+                
+            case .Success:
+                print("success")
+                DispatchQueue.main.async {
+                    self.coverIndicator.isHidden = true
+                    self.collectionViewIndicator.isHidden = true
+                }
+
+                for element in Resource.element!.data!.results {
+                    self.movieArray.append(element)
+                }
+                
+                
+            case .Loading:
+                print("loading")
+                DispatchQueue.main.async {
+                    self.coverIndicator.isHidden = false
+                    self.collectionViewIndicator.isHidden = false
+                }
+                
+            case .Failure:
+                print("fail")
+                DispatchQueue.main.async {
+                    self.coverIndicator.isHidden = true
+                    self.collectionViewIndicator.isHidden = true
+                }
+                
+            default:
+                print("default")
+                
+            }
+            
+        }.disposed(by: bag)
         
     }
+    
+    
 
 
 }
-
-
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieArray.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath)
-        
-        return cell
-    }
-    
-    
-    
-    
-    
-}
-

@@ -34,6 +34,11 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" id="P3U-dg-UAf" userLabel="CollectionView Large Activity Indicator">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCell" id="ALW-sF-vCh" customClass="MovieCollectionViewCell" customModule="iOS_Movie_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="224"/>
@@ -70,6 +75,10 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="e8V-oD-B49" userLabel="Cover Large Activity Indicator">
+                                <rect key="frame" x="0.0" y="44" width="414" height="398.5"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,16 +88,22 @@
                             <constraint firstItem="61L-F6-ILr" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="3YD-nL-taG"/>
                             <constraint firstItem="VdO-9C-oZ2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="5tK-Z7-pw0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VdO-9C-oZ2" secondAttribute="trailing" constant="8" id="A9a-4A-h8Z"/>
+                            <constraint firstItem="e8V-oD-B49" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="B25-Wu-dLh"/>
                             <constraint firstItem="gqj-Og-cTm" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.4" id="ELS-Lw-1uS"/>
                             <constraint firstItem="VdO-9C-oZ2" firstAttribute="top" secondItem="gqj-Og-cTm" secondAttribute="bottom" constant="32" id="Hzq-ub-ysb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="e8V-oD-B49" secondAttribute="trailing" id="Ixo-6L-SB3"/>
                             <constraint firstItem="gqj-Og-cTm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="L5t-Xf-drQ"/>
+                            <constraint firstItem="e8V-oD-B49" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bjx-VJ-OIn"/>
                             <constraint firstItem="61L-F6-ILr" firstAttribute="top" secondItem="VdO-9C-oZ2" secondAttribute="bottom" constant="32" id="cBU-Ub-02t"/>
+                            <constraint firstItem="VdO-9C-oZ2" firstAttribute="top" secondItem="e8V-oD-B49" secondAttribute="bottom" id="foI-XM-PlH"/>
                             <constraint firstItem="61L-F6-ILr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="opo-2H-50M"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gqj-Og-cTm" secondAttribute="trailing" id="sgz-Z0-Dzp"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionViewIndicator" destination="P3U-dg-UAf" id="LnZ-aq-G8w"/>
                         <outlet property="coverImageView" destination="gqj-Og-cTm" id="v33-j9-uef"/>
+                        <outlet property="coverIndicator" destination="e8V-oD-B49" id="HJS-1G-qUN"/>
                         <outlet property="movieCollectionView" destination="61L-F6-ILr" id="odk-kU-tk1"/>
                     </connections>
                 </viewController>

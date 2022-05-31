@@ -6,17 +6,20 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class MovieRepository {
     
-    let serviceManager = ServiceManager()
-    var resource:Resource = Resource.loading()
+    private let serviceManager = ServiceManager()
     
-    func getPopularMovies() {
-    
-        resource = serviceManager.getPopularMovies()
-        
+    func getPopularMovies() -> Observable<Resource> {
+       return serviceManager.getPopularMovies()
+
     }
+    
+    
+    
     
     
 }
