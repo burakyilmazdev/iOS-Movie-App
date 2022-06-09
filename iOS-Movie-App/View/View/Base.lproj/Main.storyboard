@@ -9,10 +9,80 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Detail View Controller-->
+        <scene sceneID="rel-Ot-3EJ">
+            <objects>
+                <viewController id="4Xg-oT-2LB" userLabel="Detail View Controller" customClass="DetailViewController" customModule="iOS_Movie_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0FY-AD-7Oy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QBW-kl-xO8">
+                                <rect key="frame" x="0.0" y="52" width="414" height="210.5"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ev2-NE-m8e">
+                                <rect key="frame" x="8" y="278.5" width="398" height="34.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0032216494849999998" green="0.0032216494849999998" blue="0.0032216494849999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add to Favorites">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addToFavorites:" destination="4Xg-oT-2LB" eventType="touchUpInside" id="Dlu-yI-OPc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8q-F0-wiA" userLabel="Movie Title">
+                                <rect key="frame" x="8" y="345" width="398" height="25.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFd-LL-HiH" userLabel="Movie Description">
+                                <rect key="frame" x="8" y="386.5" width="398" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kiJ-VE-LQj"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <constraints>
+                            <constraint firstItem="t8q-F0-wiA" firstAttribute="top" secondItem="Ev2-NE-m8e" secondAttribute="bottom" constant="32" id="2Cm-68-lRO"/>
+                            <constraint firstItem="QBW-kl-xO8" firstAttribute="leading" secondItem="kiJ-VE-LQj" secondAttribute="leading" id="6BA-5j-czG"/>
+                            <constraint firstItem="QBW-kl-xO8" firstAttribute="height" secondItem="0FY-AD-7Oy" secondAttribute="height" multiplier="0.25" id="InI-Pz-JbI"/>
+                            <constraint firstItem="kiJ-VE-LQj" firstAttribute="trailing" secondItem="QBW-kl-xO8" secondAttribute="trailing" id="QVV-oH-75w"/>
+                            <constraint firstItem="kiJ-VE-LQj" firstAttribute="trailing" secondItem="Ev2-NE-m8e" secondAttribute="trailing" constant="8" id="SZH-NS-jXJ"/>
+                            <constraint firstItem="t8q-F0-wiA" firstAttribute="leading" secondItem="kiJ-VE-LQj" secondAttribute="leading" constant="8" id="ZDZ-xO-wfE"/>
+                            <constraint firstItem="QBW-kl-xO8" firstAttribute="top" secondItem="kiJ-VE-LQj" secondAttribute="top" constant="8" id="dcg-wy-oGe"/>
+                            <constraint firstItem="pFd-LL-HiH" firstAttribute="top" secondItem="t8q-F0-wiA" secondAttribute="bottom" constant="16" id="h4a-h2-5bs"/>
+                            <constraint firstItem="kiJ-VE-LQj" firstAttribute="trailing" secondItem="pFd-LL-HiH" secondAttribute="trailing" constant="8" id="mct-aH-FrY"/>
+                            <constraint firstItem="kiJ-VE-LQj" firstAttribute="trailing" secondItem="t8q-F0-wiA" secondAttribute="trailing" constant="8" id="oTQ-Et-wUN"/>
+                            <constraint firstItem="Ev2-NE-m8e" firstAttribute="leading" secondItem="kiJ-VE-LQj" secondAttribute="leading" constant="8" id="r7S-nS-byf"/>
+                            <constraint firstItem="Ev2-NE-m8e" firstAttribute="top" secondItem="QBW-kl-xO8" secondAttribute="bottom" constant="16" id="v2P-xz-IqZ"/>
+                            <constraint firstItem="pFd-LL-HiH" firstAttribute="leading" secondItem="kiJ-VE-LQj" secondAttribute="leading" constant="8" id="vch-rU-I6s"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IgP-Z2-VoZ"/>
+                    <connections>
+                        <outlet property="movieDescription" destination="pFd-LL-HiH" id="R8Q-EG-THU"/>
+                        <outlet property="movieImage" destination="QBW-kl-xO8" id="XhC-Gu-1qo"/>
+                        <outlet property="movieTitle" destination="t8q-F0-wiA" id="LPL-FL-HKM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5m3-1x-yh1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773.91304347826087" y="83.705357142857139"/>
+        </scene>
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_Movie_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Main View Controller" customClass="ViewController" customModule="iOS_Movie_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,14 +99,14 @@
                             </label>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleAspectFit" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="61L-F6-ILr" userLabel="Movie Collection View">
                                 <rect key="frame" x="0.0" y="533" width="414" height="224"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8wp-eA-NX3">
                                     <size key="itemSize" width="128" height="224"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" id="P3U-dg-UAf" userLabel="CollectionView Large Activity Indicator">
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" id="FhJ-7d-nFp">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,8 +119,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="224"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2yH-nb-q2m">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2yH-nb-q2m">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="224"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                            <integer key="value" value="30"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -103,11 +184,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collectionViewIndicator" destination="P3U-dg-UAf" id="LnZ-aq-G8w"/>
+                        <outlet property="collectionViewIndicator" destination="FhJ-7d-nFp" id="I6z-gG-xsf"/>
                         <outlet property="coverImageText" destination="8O2-rv-qO7" id="cnG-Py-huY"/>
                         <outlet property="coverImageView" destination="gqj-Og-cTm" id="v33-j9-uef"/>
                         <outlet property="coverIndicator" destination="e8V-oD-B49" id="HJS-1G-qUN"/>
                         <outlet property="movieCollectionView" destination="61L-F6-ILr" id="odk-kU-tk1"/>
+                        <segue destination="4Xg-oT-2LB" kind="show" identifier="goToDetail" id="HaJ-Ih-9p7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

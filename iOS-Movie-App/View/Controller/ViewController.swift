@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     private var bag = DisposeBag()
     var movieArray = [Movie]()
     var observableMovieArray = PublishSubject<[Movie]>()
+    var isSuccess:Bool = false
+    var movie:Movie?
     
 
     override func viewDidLoad() {
@@ -30,7 +32,7 @@ class ViewController: UIViewController {
         
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
-        
+    
         
         
         movieViewModel.getMovies().subscribe { Resource in
@@ -39,24 +41,22 @@ class ViewController: UIViewController {
                 
             case .Success:
                 print("success")
-                DispatchQueue.main.async {
-                    self.coverIndicator.isHidden = true
-                    self.collectionViewIndicator.isHidden = true
-                }
-
+                self.isSuccess = true
+                
                 for element in Resource.element!.data!.results {
                     self.movieArray.append(element)
                 }
                 
                 self.observableMovieArray.onNext(self.movieArray)
                 DispatchQueue.main.async {
+                    let baseUrl = "https://image.tmdb.org/t/p/w500"
+                    let randomInt = Int.random(in: 0..<self.movieArray.count)
                     
-                    self.movieViewModel.scaleAndShowImage(url: URL(string: "https://image.tmdb.org/t/p/w500/AbgEQO2mneCSOc8CSnOMa8pBS8I.jpg")!, imageView: self.coverImageView)
-                    
+                    self.movieViewModel.scaleAndShowImage(url: URL(string: "\(baseUrl)\(self.movieArray[randomInt].backdrop_path)")!, imageView: self.coverImageView, size: CGSize(width: 500, height: 350))
+                    self.coverIndicator.isHidden = true
+                    self.collectionViewIndicator.isHidden = true
+                    self.coverImageText.text = self.movieArray[randomInt].title
                 }
-                
-                
-                
                 
             case .Loading:
                 print("loading")
@@ -84,29 +84,50 @@ class ViewController: UIViewController {
             
         }.disposed(by: bag)
                
-        
     }
 
 }
 
 extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        movieArray.count
+        return movieArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
-        print("collection \(movieArray[indexPath.row].backdrop_path)")
-        let image = UIImage(named: "sr_200")
-        let size = CGSize(width: 150, height: 225)
-        let scaledImage =  UIImage.scaleImage(img: image!, size: size)
-        cell.movieImageView.image = scaledImage
+            let baseUrl = "https://image.tmdb.org/t/p/w500"
         
+            for _ in movieArray {
+               self.movieViewModel.scaleAndShowImage(url: URL(string: "\(baseUrl)\(self.movieArray[indexPath.row].poster_path)")!, imageView: cell.movieImageView, size: CGSize(width: 150, height: 225))
+            }
+            
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        movie = movieArray[indexPath.row]
+        performSegue(withIdentifier: "goToDetail", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            
+        case "goToDetail":
+            let detailVC = segue.destination as? DetailViewController
+            detailVC?.movie = movie
+            
+        default:
+            print("default")
+            
+        }
+    }
+    
 }
+
+
 
 
 
