@@ -12,7 +12,7 @@ import Kingfisher
 
 class ViewController: UIViewController {
     
-
+    
     @IBOutlet weak var collectionViewIndicator: UIActivityIndicatorView!
     @IBOutlet weak var coverIndicator: UIActivityIndicatorView!
     @IBOutlet weak var coverImageView: UIImageView!
@@ -24,15 +24,20 @@ class ViewController: UIViewController {
     var movieArray = [Movie]()
     var observableMovieArray = PublishSubject<[Movie]>()
     var isSuccess:Bool = false
-    var movie:Movie?
+    var movieForCollection:Movie?
+    var movieForCover:Movie?
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
-    
+        
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
+        coverImageView.addGestureRecognizer(tapGR)
+        coverImageView.isUserInteractionEnabled = true
+        
         
         
         movieViewModel.getMovies().subscribe { Resource in
@@ -51,8 +56,10 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     let baseUrl = "https://image.tmdb.org/t/p/w500"
                     let randomInt = Int.random(in: 0..<self.movieArray.count)
+                    self.movieForCover = self.movieArray[randomInt]
                     
                     self.movieViewModel.scaleAndShowImage(url: URL(string: "\(baseUrl)\(self.movieArray[randomInt].backdrop_path)")!, imageView: self.coverImageView, size: CGSize(width: 500, height: 350))
+                    
                     self.coverIndicator.isHidden = true
                     self.collectionViewIndicator.isHidden = true
                     self.coverImageText.text = self.movieArray[randomInt].title
@@ -83,13 +90,22 @@ class ViewController: UIViewController {
             }
             
         }.disposed(by: bag)
-               
+        
     }
-
+    
+    
+    @objc func imageTapped(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            performSegue(withIdentifier: "goToDetail", sender: self)
+        }
+    }
+    
 }
 
-extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
 
+
+extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieArray.count
     }
@@ -97,17 +113,17 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
-            let baseUrl = "https://image.tmdb.org/t/p/w500"
+        let baseUrl = "https://image.tmdb.org/t/p/w500"
         
-            for _ in movieArray {
-               self.movieViewModel.scaleAndShowImage(url: URL(string: "\(baseUrl)\(self.movieArray[indexPath.row].poster_path)")!, imageView: cell.movieImageView, size: CGSize(width: 150, height: 225))
-            }
-            
+        for _ in movieArray {
+            self.movieViewModel.scaleAndShowImage(url: URL(string: "\(baseUrl)\(self.movieArray[indexPath.row].poster_path)")!, imageView: cell.movieImageView, size: CGSize(width: 150, height: 225))
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        movie = movieArray[indexPath.row]
+        movieForCollection = movieArray[indexPath.row]
         performSegue(withIdentifier: "goToDetail", sender: self)
     }
     
@@ -117,7 +133,15 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
             
         case "goToDetail":
             let detailVC = segue.destination as? DetailViewController
-            detailVC?.movie = movie
+            if movieForCollection != nil {
+                detailVC?.movie = movieForCollection
+                movieForCollection = nil
+            }
+            else{
+                detailVC?.movie = movieForCover
+                
+            }
+            
             
         default:
             print("default")
@@ -131,4 +155,4 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
 
 
 
-    
+
