@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     let movieViewModel = MovieViewModel()
     private var bag = DisposeBag()
     var movieArray = [Movie]()
-    var observableMovieArray = PublishSubject<[Movie]>()
     var isSuccess:Bool = false
     var movieForCollection:Movie?
     var movieForCover:Movie?
@@ -48,11 +47,8 @@ class ViewController: UIViewController {
                 print("success")
                 self.isSuccess = true
                 
-                for element in Resource.element!.data!.results {
-                    self.movieArray.append(element)
-                }
+                self.movieArray = Resource.element!.data!.results
                 
-                self.observableMovieArray.onNext(self.movieArray)
                 DispatchQueue.main.async {
                     let baseUrl = "https://image.tmdb.org/t/p/w500"
                     let randomInt = Int.random(in: 0..<self.movieArray.count)

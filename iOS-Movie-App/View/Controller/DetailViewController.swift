@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieDescription: UILabel!
     let movieViewModel = MovieViewModel()
+    let favoriteViewModel = FavoritesViewModel()
     
     
     override func viewDidLoad() {
@@ -32,7 +33,8 @@ class DetailViewController: UIViewController {
     
     
     @IBAction func addToFavorites(_ sender: Any) {
-        
+
+        favoriteViewModel.saveToDatabase(favoriteMovie: movie!)
     }
     
 

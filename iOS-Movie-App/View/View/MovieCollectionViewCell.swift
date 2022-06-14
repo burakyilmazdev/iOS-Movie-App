@@ -2,7 +2,7 @@
 //  MovieCollectionViewCell.swift
 //  iOS-Movie-App
 //
-//  Created by Burak Yılmaz on 25.05.2022.
+//  Created by Burak Yılmaz on 14.06.2022.
 //
 
 import UIKit
@@ -10,6 +10,4 @@ import UIKit
 class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieImageView: UIImageView!
-    
-    
 }
