@@ -15,7 +15,6 @@ class FavoritesViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var favoritesTableView: UITableView!
-    var favoritesMovies = [MovieEntity]()
     private var bag = DisposeBag()
     var fetchedResultsController: NSFetchedResultsController<MovieEntity>!
 
@@ -31,11 +30,7 @@ class FavoritesViewController: UIViewController {
         
        let nib = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
         favoritesTableView.register(nib, forCellReuseIdentifier: "FavoriteTableViewCell")
-        
-        favoritesViewModel.fetchFavoritesMovies().subscribe { MovieEntityList in
-            self.favoritesMovies = MovieEntityList
-        }.disposed(by: bag)
-        
+                
         setupFetchResultsController()
     }
     
@@ -57,6 +52,7 @@ extension FavoritesViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("section : \(section)")
         let movies = fetchedResultsController.sections![section]
         return movies.numberOfObjects
     }

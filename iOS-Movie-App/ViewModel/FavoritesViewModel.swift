@@ -32,11 +32,7 @@ class FavoritesViewModel {
         }
         
     }
-    
-    func fetchFavoritesMovies() -> Observable<[MovieEntity]>{
-            return movieRepository.getFavoritesMovies()
-        }
-    
+      
     
     func scaleAndShowImage(url:URL,imageView: UIImageView,size:CGSize) {
     

@@ -17,28 +17,6 @@ class MovieRepository {
     func getPopularMovies() -> Observable<Resource> {
        return serviceManager.getPopularMovies()
 
-    }
-    
-    func getFavoritesMovies() -> Observable<[MovieEntity]>{
-        
-        return Observable.create { observer in
-            do{
-                try observer.onNext(self.context.fetch(MovieEntity.fetchRequest()))
-            }catch{
-                
-            }
-            
-            return Disposables.create{
-                
-            }
-        }
-        
-        
-        
-    }
-    
-    
-    
-    
+    }    
     
 }
