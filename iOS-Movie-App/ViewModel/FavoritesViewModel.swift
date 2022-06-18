@@ -34,20 +34,8 @@ class FavoritesViewModel {
     }
     
     func fetchFavoritesMovies() -> Observable<[MovieEntity]>{
-        return movieRepository.getFavoritesMovies()
-    }
-    
-    func deleteMovie(movieToDelete:MovieEntity){
-        
-        context.delete(movieToDelete)
-        
-        do{
-            try context.save()
-        }catch{
-            
+            return movieRepository.getFavoritesMovies()
         }
-        
-    }
     
     
     func scaleAndShowImage(url:URL,imageView: UIImageView,size:CGSize) {
@@ -68,6 +56,19 @@ class FavoritesViewModel {
             }
             
         }
+        
+    }
+    
+    func delete(movieToRemove:MovieEntity){
+        
+        self.context.delete(movieToRemove)
+        
+        do{
+            try self.context.save()
+        }catch{
+            print("error in delete")
+        }
+        
         
     }
     

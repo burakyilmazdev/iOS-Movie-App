@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6534E32A2841938F0049CD34 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534E3292841938F0049CD34 /* MovieRepository.swift */; };
 		6534E32C284194F30049CD34 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534E32B284194F30049CD34 /* MovieViewModel.swift */; };
+		654151F1285D403E001405D6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654151F0285D403E001405D6 /* CoreDataManager.swift */; };
 		654188DD285391230024DA2A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654188DC285391230024DA2A /* FavoritesViewController.swift */; };
 		654188DF2853AA750024DA2A /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654188DE2853AA750024DA2A /* FavoritesViewModel.swift */; };
 		654188F32853EB940024DA2A /* MovieEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654188F12853EB940024DA2A /* MovieEntity+CoreDataProperties.swift */; };
@@ -36,6 +37,7 @@
 		45BE453EB6C7886368DA1A37 /* Pods-iOS-Movie-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Movie-App.release.xcconfig"; path = "Target Support Files/Pods-iOS-Movie-App/Pods-iOS-Movie-App.release.xcconfig"; sourceTree = "<group>"; };
 		6534E3292841938F0049CD34 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		6534E32B284194F30049CD34 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		654151F0285D403E001405D6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		654188DC285391230024DA2A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		654188DE2853AA750024DA2A /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		654188F12853EB940024DA2A /* MovieEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MovieEntity+CoreDataProperties.swift"; path = "/Users/burakyilmaz/Documents/iOS-Movie-App/iOS-Movie-App/Model/Models/MovieEntity+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
@@ -99,6 +101,7 @@
 				657584AB28412F7400D3212E /* MovieResponse.swift */,
 				657584AF28413E7600D3212E /* Resource.swift */,
 				657584B128413ED400D3212E /* Status.swift */,
+				654151F0285D403E001405D6 /* CoreDataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				654188F32853EB940024DA2A /* MovieEntity+CoreDataProperties.swift in Sources */,
 				65C7B12D2852581400E17EE1 /* DetailViewController.swift in Sources */,
 				657584AA28412CDB00D3212E /* Movie.swift in Sources */,
+				654151F1285D403E001405D6 /* CoreDataManager.swift in Sources */,
 				654188DF2853AA750024DA2A /* FavoritesViewModel.swift in Sources */,
 				657584B228413ED400D3212E /* Status.swift in Sources */,
 				659BD650283EC60200B4F607 /* iOS_Movie_App.xcdatamodeld in Sources */,
