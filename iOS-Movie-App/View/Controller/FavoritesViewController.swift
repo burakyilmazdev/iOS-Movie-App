@@ -27,19 +27,23 @@ class FavoritesViewController: UIViewController {
         favoritesTableView.backgroundColor = UIColor.black
         favoritesTableView.delegate = self
         favoritesTableView.dataSource = self
+        searchBar.delegate = self
         
        let nib = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
         favoritesTableView.register(nib, forCellReuseIdentifier: "FavoriteTableViewCell")
                 
         setupFetchResultsController()
+        
+        
     }
     
     
     
-    func setupFetchResultsController(){
-        fetchedResultsController = CoreDataManager.createFetchResultsController()
+    func setupFetchResultsController(filter:String? = nil){
+        fetchedResultsController = CoreDataManager.createFetchResultsController(filter: filter)
         fetchedResultsController.delegate = self
         try? fetchedResultsController.performFetch()
+
     }
 
 }
@@ -108,6 +112,27 @@ extension FavoritesViewController:NSFetchedResultsControllerDelegate{
             favoritesTableView.reloadData()
         }
     }
+    
+}
+
+extension FavoritesViewController:UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.count>=1 {
+            print("wiht filter")
+            setupFetchResultsController(filter: searchText)
+            favoritesTableView.reloadData()
+        }
+        else{
+            print("wihtout filter")
+            setupFetchResultsController()
+            favoritesTableView.reloadData()
+            
+        }
+       
+    }
+    
     
 }
 

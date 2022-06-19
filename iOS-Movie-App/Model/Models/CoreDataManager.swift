@@ -11,18 +11,25 @@ import CoreData
 
 class CoreDataManager{
     
-    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+   static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-   static func createFetchResultsController() -> NSFetchedResultsController<MovieEntity>{
+    static func createFetchResultsController(filter:String? = nil) -> NSFetchedResultsController<MovieEntity>{
         let request:NSFetchRequest<MovieEntity> = MovieEntity.fetchRequest()
         
         let sortDescriptor = NSSortDescriptor(keyPath: \MovieEntity.title, ascending: false)
         
         request.sortDescriptors = [sortDescriptor]
         
+        if let filter = filter {
+            let predicate = NSPredicate(format: "title contains[cd] %@", filter)
+            request.predicate = predicate
+        }
+        
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
     }
+    
+    
     
     
 }
