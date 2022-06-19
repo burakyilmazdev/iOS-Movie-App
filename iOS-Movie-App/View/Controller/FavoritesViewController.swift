@@ -33,9 +33,19 @@ class FavoritesViewController: UIViewController {
         favoritesTableView.register(nib, forCellReuseIdentifier: "FavoriteTableViewCell")
                 
         setupFetchResultsController()
-        
+        hideKeyboardWhenTappedAround()
         
     }
+    
+    func hideKeyboardWhenTappedAround() {
+            let tapGesture = UITapGestureRecognizer(target: self,
+                             action: #selector(hideKeyboard))
+            view.addGestureRecognizer(tapGesture)
+        }
+
+        @objc func hideKeyboard() {
+            view.endEditing(true)
+        }
     
     
     
