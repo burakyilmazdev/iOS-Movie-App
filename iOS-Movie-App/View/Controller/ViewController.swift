@@ -13,12 +13,15 @@ import Kingfisher
 class ViewController: UIViewController {
     
     
+    
     @IBOutlet weak var collectionViewIndicator: UIActivityIndicatorView!
     @IBOutlet weak var coverIndicator: UIActivityIndicatorView!
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var coverImageText: UILabel!
     
+    
+    let movieCollectionViewCell = MovieCollectionViewCell()
     let movieViewModel = MovieViewModel()
     private var bag = DisposeBag()
     var movieArray = [Movie]()
@@ -37,6 +40,8 @@ class ViewController: UIViewController {
         coverImageView.addGestureRecognizer(tapGR)
         coverImageView.isUserInteractionEnabled = true
         
+        coverImageView.layer.borderWidth = 1
+        coverImageView.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 0.5)
         
         
         movieViewModel.getMovies().subscribe { Resource in
@@ -54,7 +59,7 @@ class ViewController: UIViewController {
                     let randomInt = Int.random(in: 0..<self.movieArray.count)
                     self.movieForCover = self.movieArray[randomInt]
                     
-                    self.movieViewModel.scaleAndShowImage(url: URL(string: "\(baseUrl)\(self.movieArray[randomInt].backdrop_path)")!, imageView: self.coverImageView, size: CGSize(width: 500, height: 350))
+                    self.movieViewModel.scaleAndShowImage(url: URL(string: "\(baseUrl)\(self.movieArray[randomInt].backdrop_path)")!, imageView: self.coverImageView, size: CGSize(width: 550, height: 350))
                     
                     self.coverIndicator.isHidden = true
                     self.collectionViewIndicator.isHidden = true
@@ -100,7 +105,7 @@ class ViewController: UIViewController {
 
 
 
-extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
+extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieArray.count
@@ -110,12 +115,17 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
         let baseUrl = "https://image.tmdb.org/t/p/w500"
-        
+
         for _ in movieArray {
             self.movieViewModel.scaleAndShowImage(url: URL(string: "\(baseUrl)\(self.movieArray[indexPath.row].poster_path)")!, imageView: cell.movieImageView, size: CGSize(width: 150, height: 225))
+            
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 150, height: 225)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

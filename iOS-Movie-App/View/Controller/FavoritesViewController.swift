@@ -29,6 +29,7 @@ class FavoritesViewController: UIViewController {
         favoritesTableView.dataSource = self
         searchBar.delegate = self
         
+
        let nib = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
         favoritesTableView.register(nib, forCellReuseIdentifier: "FavoriteTableViewCell")
                 
@@ -71,16 +72,21 @@ extension FavoritesViewController:UITableViewDelegate,UITableViewDataSource{
         return movies.numberOfObjects
     }
     
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        CGFloat(225.0)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell") as! FavoriteTableViewCell
         
-        cell.favoriteMovieTitle.text = fetchedResultsController.object(at: indexPath).title
         
         let baseUrl = "https://image.tmdb.org/t/p/w500"
         let moviePoster = fetchedResultsController.object(at: indexPath).poster_path
         let moviePosterURLforKF = URL(string: "\(baseUrl)\(moviePoster!)")
         
         favoritesViewModel.scaleAndShowImage(url: moviePosterURLforKF!, imageView: cell.favoriteImageView, size: CGSize(width: 150, height: 225))
+        cell.favoriteMovieTitle.text = fetchedResultsController.object(at: indexPath).title
         
         return cell
     }

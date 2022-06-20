@@ -14,7 +14,8 @@ class FavoriteTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        favoriteImageView.layer.borderWidth = 1
+        favoriteImageView.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 0.5)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

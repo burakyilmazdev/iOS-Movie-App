@@ -22,7 +22,7 @@
                         <color key="backgroundColor" systemColor="labelColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="10"/>
+                                <integer key="value" value="15"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" systemColor="labelColor"/>
                 <constraints>
                     <constraint firstItem="7cB-iy-TMz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="BLr-gP-BqN"/>
                     <constraint firstItem="hCq-is-dvT" firstAttribute="leading" secondItem="7cB-iy-TMz" secondAttribute="trailing" constant="16" id="HkB-MB-tLh"/>
